@@ -9,13 +9,15 @@ except ImportError as e:
     )
 
 from dotenv import load_dotenv
+import streamlit as st
 import os
 
 # Explicitly load .env from project root
 load_dotenv(dotenv_path=".env")
 
 def get_llm():
-    api_key = os.getenv("GOOGLE_API_KEY")
+    api_key = st.secrets["GOOGLE_API_KEY"]
+    #api_key = os.getenv("GOOGLE_API_KEY")
 
     if not api_key:
         raise ValueError("API key not loaded. Check your .env file.")
